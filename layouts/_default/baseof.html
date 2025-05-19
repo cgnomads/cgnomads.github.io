@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="{{ site.Language.LanguageCode }}" {{- if eq site.Language.LanguageDirection "rtl" }} dir="rtl" {{- end }}>
   <head>
+    {{ $styles := resources.Get "css/style.css" | resources.Minify | resources.Fingerprint }}
+    <link rel="stylesheet" href="{{ $styles.Permalink }}" integrity="{{ $styles.Data.Integrity }}">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     {{/* NOTE: the Site's title, and if there is a page title, that is set too */}}
-    <title>{{ block "title" . }}{{ with .Params.Title }}{{ . }} | {{ end }}{{ .Site.Title }}{{ end }}</title>
-    <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{if .IsPage}}{{ .Summary }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}">
+    <title>{{ .Site.Title }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Bring 3D Gaussian Splatting to Life with CG Nomads — explore GSOPs for SideFX Houdini">
     {{ hugo.Generator }}
     {{ $production := hugo.IsProduction }}
     {{ $public := not .Params.private }}
