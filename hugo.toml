@@ -1,0 +1,4 @@
+baseURL = 'https://cgnomads.github.io'
+languageCode = 'en-us'
+title = 'CG Nomads'
+theme = 'gallery'
